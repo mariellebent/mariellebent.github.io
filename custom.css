@@ -617,7 +617,68 @@ body.contact-page {
         flex: 0 0 28px;
         fill: currentColor;
         color: var(--gold);
-      }body.contact-page .contact-link.email { grid-column: 1 / -1; justify-content: center; }body.contact-page .contact-link.email svg { width: 24px; height: 24px; flex-basis: 24px; }body.contact-page .contact-link:focus-visible, body.contact-page .menu-button:focus-visible, body.contact-page .brand:focus-visible {
+      }body.contact-page .contact-link.email { grid-column: 1 / -1; justify-content: center; }body.contact-page .contact-link.email svg { width: 24px; height: 24px; flex-basis: 24px; }body.contact-page .tiktok-gallery {
+        display: grid;
+        grid-template-columns: minmax(180px, .65fr) minmax(0, 1.5fr);
+        align-items: center;
+        gap: clamp(24px, 5vw, 56px);
+        width: min(100%, 1000px);
+        margin: 72px auto 0;
+        padding-top: 34px;
+        border-top: 1px solid var(--gold-muted);
+      }body.contact-page .tiktok-author { text-align: center; }body.contact-page .tiktok-author img {
+        width: min(190px, 100%);
+        aspect-ratio: 1;
+        margin: 0 auto 20px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 50%;
+        object-fit: cover;
+      }body.contact-page .tiktok-author .eyebrow { margin-bottom: 8px; font-size: 13px; }body.contact-page .tiktok-author h2, body.contact-page .tiktok-posts h2 {
+        margin: 0 0 16px;
+        color: var(--gold);
+        font-size: clamp(28px, 4vw, 38px);
+        font-weight: 400;
+      }body.contact-page .tiktok-author > a { color: #d6cbc1; text-decoration-color: var(--gold-muted); }body.contact-page .tiktok-posts { min-width: 0; }body.contact-page .tiktok-posts h2 { text-align: left; }body.contact-page .tiktok-post-carousel {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        padding: 4px 2px 16px;
+        scroll-snap-type: x mandatory;
+        scrollbar-color: var(--gold-muted) #211f1e;
+      }body.contact-page .tiktok-post-card {
+        position: relative;
+        display: block;
+        flex: 0 0 clamp(140px, 15vw, 176px);
+        overflow: hidden;
+        border: 1px solid var(--gold-muted);
+        border-radius: 10px;
+        background: #211f1e;
+        color: var(--cream);
+        text-align: left;
+        text-decoration: none;
+        scroll-snap-align: start;
+        transition: border-color .2s ease, transform .2s ease;
+      }body.contact-page .tiktok-post-card:hover { transform: translateY(-3px); border-color: var(--gold); }body.contact-page .tiktok-post-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+      }body.contact-page .tiktok-post-play {
+        position: absolute;
+        top: 38%;
+        left: 50%;
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgb(255 255 255 / 65%);
+        border-radius: 50%;
+        background: rgb(10 10 10 / 55%);
+        color: white;
+        font-family: sans-serif;
+        font-size: 15px;
+        transform: translate(-50%, -50%);
+      }body.contact-page .tiktok-post-title { display: block; min-height: 54px; padding: 11px 12px; color: #e4d6c5; font-size: 15px; line-height: 1.25; }body.contact-page .tiktok-post-card:focus-visible, body.contact-page .contact-link:focus-visible, body.contact-page .menu-button:focus-visible, body.contact-page .brand:focus-visible {
         outline: 2px solid var(--gold);
         outline-offset: 4px;
       }body.contact-page footer {
@@ -629,6 +690,7 @@ body.contact-page {
       }@keyframes arrive {
         from { opacity: 0; transform: translateY(18px); }
         to { opacity: 1; transform: translateY(0); }
+      }@media (max-width: 700px) {body.contact-page .tiktok-gallery { grid-template-columns: 1fr; gap: 34px; margin-top: 52px; }body.contact-page .tiktok-author img { width: min(150px, 42vw); }body.contact-page .tiktok-posts h2 { text-align: center; }body.contact-page .tiktok-post-card { flex-basis: 160px; }
       }@media (max-width: 520px) {body.contact-page main { padding-top: 105px; }body.contact-page .contact-links { grid-template-columns: 1fr; gap: 12px; margin-top: 34px; }body.contact-page .contact-link { min-height: 66px; padding: 12px 18px; }body.contact-page .contact-link.email { grid-column: auto; justify-content: flex-start; }body.contact-page .intro-copy { font-size: 18px; }
       }@media (prefers-reduced-motion: reduce) {body.contact-page *, body.contact-page *::before, body.contact-page *::after { transition-duration: .01ms !important; }body.contact-page .contact-intro, body.contact-page .contact-links { animation: none !important; }
       }
