@@ -63,31 +63,57 @@
       }
       .brand img {       width: 42px; height: 37px; object-fit: contain; }
       .menu-button {
-        padding: 6px 0 6px 14px;
+        position: relative;
+        z-index: 13;
+        width: 52px;
+        height: 46px;
+        padding: 10px;
         border: 0;
         background: transparent;
         color: var(--cream);
-        font: 500 15px var(--serif);
         cursor: pointer;
       }
-      .menu-panel {
-        display: none;
-        position: absolute;
-        right: clamp(22px, 4.5vw, 68px);
-        top: 54px;
-        min-width: 190px;
-        padding: 12px 18px;
-        background: #211f1e;
-        border: 1px solid var(--gold-muted);
-        box-shadow: 0 12px 30px #0008;
+      .menu-icon { display: grid; gap: 6px; }
+      .menu-icon span {
+        width: 30px;
+        height: 2px;
+        display: block;
+        background: var(--cream);
+        transition: transform .3s ease, width .3s ease;
       }
-      .menu-panel.open { display: grid; }
+      .menu-icon span:nth-child(2) { width: 22px; justify-self: end; }
+      .menu-button[aria-expanded="true"] .menu-icon span:first-child { transform: translateY(8px) rotate(45deg); }
+      .menu-button[aria-expanded="true"] .menu-icon span:nth-child(2) { width: 30px; opacity: 0; }
+      .menu-button[aria-expanded="true"] .menu-icon span:last-child { transform: translateY(-8px) rotate(-45deg); }
+      .menu-panel {
+        position: fixed;
+        z-index: 12;
+        top: 0;
+        right: 0;
+        width: min(390px, 88vw);
+        height: 100vh;
+        height: 100dvh;
+        padding: 100px 38px 38px;
+        border-left: 1px solid var(--gold-muted);
+        background: #211f1e;
+        box-shadow: -20px 0 60px #0008;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        visibility: hidden;
+        transform: translateX(105%);
+        transition: transform .35s ease, visibility .35s;
+      }
+      .menu-panel.open { visibility: visible; transform: translateX(0); }
       .menu-panel a {
-        padding: 9px 0;
+        padding: 13px 0;
+        border-bottom: 1px solid rgb(142 113 75 / 35%);
         text-decoration: none;
-        font-size: 16px;
+        font-size: 21px;
+        letter-spacing: .04em;
       }
       .menu-panel a:hover { color: var(--gold); }
+      body.menu-open { overflow: hidden; }
       .hero {
         min-height: 100vh;
         min-height: 100svh;
@@ -100,6 +126,7 @@
         background:
           linear-gradient(180deg, rgba(8, 9, 15, .52), rgba(8, 8, 10, .78)),
           url("HeroHome.jpg") center 52% / cover no-repeat;
+        background-position: center, center 52%;
       }
       .hero-divider, .hero h1, .hero-tags, .hero .actions { animation: hero-arrive .9s both; }
       .hero h1 { animation-delay: .12s; }
@@ -167,7 +194,6 @@
       .section-wrap { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }
       .book-section {
         padding: 62px 0 74px;
-        border-top: 24px solid #141313;
       }
       .book-feature {
         display: grid;
@@ -272,7 +298,13 @@
       .newsletter .promise { margin-bottom: 20px; font-size: 22px; font-style: italic; }
       .newsletter p:not(.promise) { max-width: 600px; margin-bottom: 22px; color: #ddd4cf; font-size: 18px; line-height: 1.2; }
       .newsletter .button { min-width: 180px; }
-      footer { min-height: 90px; display: grid; place-items: center; color: #9f958b; font-size: 13px; }
+      footer {
+        padding: 14px 16px;
+        background: var(--ink);
+        color: #9f958b;
+        font-size: 13px;
+        text-align: center;
+      }
       :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
 
       @media (max-width: 700px) {
@@ -308,14 +340,14 @@
         <img src="Logo.png" alt="">
         <span>M.A. Bent</span>
       </a>
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
-      <nav class="menu-panel" id="site-menu" aria-label="Main navigation">
-        <a href="book.html">The Book</a>
+      <button class="menu-button" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="menu-panel" id="site-menu" aria-label="Main navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
         <a href="book.html">Explore the Godwoven Trilogy</a>
-        <a href="realm.html">Menu</a>
-        <a href="#world">The Godwoven World</a>
-        <a href="#author">Meet the Author</a>
-        <a href="#newsletter">Mailing List</a>
+        <a href="realm.html#god-directory">The Godwoven World</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </header>
 
@@ -365,7 +397,7 @@
             <h3>The Gods</h3>
             <p class="tagline">Why shape the world? Their influence remains.</p>
             <p>Countless gods are worshiped, feared, forgotten, and forbidden. Their wars, bargains, and mistakes still echo through the world.</p>
-            <a class="button" href="#book"><span class="button-icon" aria-hidden="true">✦</span>Discover the gods</a>
+            <a class="button" href="realm.html#god-directory"><span class="button-icon" aria-hidden="true">✦</span>Discover the gods</a>
           </article>
           <article class="world-card">
             <img src="05_antique_gold_crescent_magic_divider 1.png" alt="">
@@ -433,16 +465,27 @@
       window.addEventListener("scroll", updateHeader, { passive: true });
       updateHeader();
 
+      const setMenuOpen = (isOpen) => {
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuPanel.setAttribute("aria-hidden", String(!isOpen));
+        menuPanel.classList.toggle("open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        if (isOpen) menuPanel.querySelector("a").focus();
+      };
+
       menuButton.addEventListener("click", () => {
-        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-        menuButton.setAttribute("aria-expanded", String(!isOpen));
-        menuPanel.classList.toggle("open", !isOpen);
+        setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
       });
 
       menuPanel.addEventListener("click", (event) => {
         if (event.target instanceof HTMLAnchorElement) {
-          menuButton.setAttribute("aria-expanded", "false");
-          menuPanel.classList.remove("open");
+          setMenuOpen(false);
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+          setMenuOpen(false);
+          menuButton.focus();
         }
       });
     </script>

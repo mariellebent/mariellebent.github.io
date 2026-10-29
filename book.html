@@ -32,6 +32,8 @@
       img { display: block; max-width: 100%; }
       h1, h2, h3, p { margin-top: 0; }
       .page-header {
+        position: relative;
+        z-index: 10;
         width: min(1040px, calc(100% - 56px));
         height: 60px;
         margin: 0 auto;
@@ -49,12 +51,59 @@
         font-style: italic;
       }
       .brand img { width: 30px; height: 27px; object-fit: contain; }
-      .home-link {
-        color: var(--muted);
-        font-size: 15px;
+      .menu-button {
+        position: relative;
+        z-index: 13;
+        width: 52px;
+        height: 46px;
+        padding: 10px;
+        border: 0;
+        background: transparent;
+        color: var(--cream);
+        cursor: pointer;
+      }
+      .menu-icon { display: grid; gap: 6px; }
+      .menu-icon span {
+        width: 30px;
+        height: 2px;
+        display: block;
+        background: var(--cream);
+        transition: transform .3s ease, width .3s ease;
+      }
+      .menu-icon span:nth-child(2) { width: 22px; justify-self: end; }
+      .menu-button[aria-expanded="true"] .menu-icon span:first-child { transform: translateY(8px) rotate(45deg); }
+      .menu-button[aria-expanded="true"] .menu-icon span:nth-child(2) { width: 30px; opacity: 0; }
+      .menu-button[aria-expanded="true"] .menu-icon span:last-child { transform: translateY(-8px) rotate(-45deg); }
+      .menu-panel {
+        position: fixed;
+        z-index: 12;
+        top: 0;
+        right: 0;
+        width: min(390px, 88vw);
+        height: 100vh;
+        height: 100dvh;
+        padding: 100px 38px 38px;
+        border-left: 1px solid var(--gold-muted);
+        background: #211f1e;
+        box-shadow: -20px 0 60px #0008;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        visibility: hidden;
+        transform: translateX(105%);
+        transition: transform .35s ease, visibility .35s;
+      }
+      .menu-panel.open { visibility: visible; transform: translateX(0); }
+      .menu-panel a {
+        padding: 13px 0;
+        border-bottom: 1px solid rgb(142 113 75 / 35%);
+        color: var(--cream);
+        font-size: 21px;
+        letter-spacing: .04em;
         text-decoration: none;
       }
-      .home-link:hover { color: var(--gold); }
+      .menu-panel a:hover { color: var(--gold); }
+      body.menu-open { overflow: hidden; }
       .page-main { width: min(1040px, calc(100% - 56px)); margin: 0 auto; }
       .trilogy-intro { padding: 10px 0 54px; text-align: center; }
       .trilogy-intro .title-row, .trilogy-intro .intro-subtitle, .trilogy-intro .book-gallery { animation: hero-arrive .9s both; }
@@ -330,8 +379,15 @@
         <img src="Logo.png" alt="">
         <span>M.A. Bent</span>
       </a>
-      <a class="home-link" href="index.html">Home</a>
-      <a class="home-link" href="realm.html">The Realm</a>
+      <button class="menu-button" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+        <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+      <nav class="menu-panel" id="site-menu" aria-label="Main navigation" aria-hidden="true">
+        <a href="index.html">Home</a>
+        <a href="book.html">Explore the Godwoven Trilogy</a>
+        <a href="realm.html#god-directory">The Godwoven World</a>
+        <a href="contact.html">Contact</a>
+      </nav>
     </header>
 
     <main class="page-main">
@@ -443,6 +499,32 @@
     </main>
     <footer>© 2026 Marielle A. Bent · The Godwoven Trilogy</footer>
     <script>
+      const menuButton = document.querySelector(".menu-button");
+      const menuPanel = document.querySelector(".menu-panel");
+      const setMenuOpen = (isOpen) => {
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuPanel.setAttribute("aria-hidden", String(!isOpen));
+        menuPanel.classList.toggle("open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        if (isOpen) menuPanel.querySelector("a").focus();
+      };
+
+      menuButton.addEventListener("click", () => {
+        setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
+      });
+
+      menuPanel.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) {
+          setMenuOpen(false);
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+          setMenuOpen(false);
+          menuButton.focus();
+        }
+      });
+
       const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
       const revealItems = document.querySelectorAll(".book-detail, .coming-book, .world-section > *, .character-section");
 

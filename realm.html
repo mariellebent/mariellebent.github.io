@@ -27,6 +27,12 @@
         font: 16px/1.35 var(--serif);
       }
       a { color: inherit; }
+      .realm-intro .title-row, .realm-intro .subtitle { animation: hero-arrive .9s both; }
+      .realm-intro .subtitle { animation-delay: .12s; }
+      @keyframes hero-arrive {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
       .page-header {
         width: min(1040px, calc(100% - 48px));
         height: 68px;
@@ -74,6 +80,19 @@
       h1::before, h1::after { content: "✥"; color: var(--gold); font-size: .5em; vertical-align: middle; }
       h1::before { margin-right: .55em; }
       h1::after { margin-left: .55em; }
+      .gods-intro { padding: 0 0 42px; text-align: center; }
+      .gods-title {
+        margin: 0;
+        color: var(--gold);
+        font-size: clamp(34px, 5vw, 46px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .gods-title::before, .gods-title::after { content: "✥"; color: var(--gold); font-size: .5em; vertical-align: middle; }
+      .gods-title::before { margin-right: .55em; }
+      .gods-title::after { margin-left: .55em; }
       .subtitle { margin: 14px 0 0; color: #d6cbc1; font-size: 18px; font-style: italic; }
       .map-frame {
         position: relative;
@@ -122,6 +141,116 @@
         transition: opacity .18s ease, transform .18s ease;
       }
       .location-note.visible { opacity: 1; transform: translate(-50%, 0); }
+      .god-section { margin: 0 auto 72px; }
+      .god-section h2 {
+        margin: 0 0 24px;
+        color: var(--cream);
+        font-size: clamp(25px, 3vw, 30px);
+        font-style: italic;
+        font-weight: 400;
+      }
+      .god-filters {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 0 auto 38px;
+      }
+      .god-filter {
+        padding: 8px 17px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 999px;
+        background: transparent;
+        color: var(--cream);
+        font: 500 15px/1.2 var(--serif);
+        cursor: pointer;
+        transition: color .18s ease, background-color .18s ease, border-color .18s ease;
+      }
+      .god-filter:hover, .god-filter[aria-pressed="true"] {
+        border-color: var(--gold);
+        background: #352719;
+        color: #f3d9a8;
+      }
+      .god-filter-status {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        clip-path: inset(50%);
+      }
+      .god-card[hidden] { display: none; }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .7s ease, transform .7s ease;
+      }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+      .god-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 30px 38px;
+      }
+      .god-card {
+        position: relative;
+        min-width: 0;
+        padding: 18px 22px 22px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 12px 12px 0 0;
+        box-shadow: inset 0 0 0 1px rgb(198 160 108 / 10%);
+        text-align: center;
+      }
+      .god-card::before {
+        position: absolute;
+        z-index: 1;
+        top: -12px;
+        left: 50%;
+        display: grid;
+        width: 34px;
+        aspect-ratio: 1;
+        transform: translateX(-50%);
+        place-items: center;
+        border: 1px solid var(--gold);
+        border-radius: 50%;
+        background: var(--ink);
+        color: var(--gold);
+        content: attr(data-sigil);
+        font-size: 17px;
+        line-height: 1;
+        box-shadow: 0 0 0 3px var(--ink), 0 2px 8px #0008;
+      }
+      .god-card img {
+        display: block;
+        width: min(100%, 210px);
+        aspect-ratio: 1;
+        margin: 0 auto 8px;
+        border-radius: 18px;
+        object-fit: cover;
+      }
+      .god-card h3 {
+        margin: 0;
+        color: var(--gold);
+        font-size: 23px;
+        font-weight: 400;
+        line-height: 1.1;
+        text-transform: uppercase;
+      }
+      .god-card p { min-height: 2.7em; margin: 4px 0 12px; }
+      .god-learn {
+        display: inline-block;
+        min-width: 128px;
+        padding: 5px 14px;
+        border: 1px solid #665078;
+        border-radius: 5px;
+        background: #211034;
+        color: var(--cream);
+        font-size: 13px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: background-color .18s ease;
+      }
+      .god-learn:hover { background: #382051; }
       footer { min-height: 54px; color: #9e958b; text-align: center; font-size: 13px; }
       :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
       @media (max-width: 700px) {
@@ -131,13 +260,27 @@
         .title-row::before, .title-row::after { width: 24px; }
         h1 { font-size: clamp(28px, 7vw, 38px); white-space: normal; }
         h1::before, h1::after { display: none; }
+        .gods-intro { padding-bottom: 32px; }
+        .gods-title { font-size: clamp(28px, 7vw, 38px); white-space: normal; }
+        .gods-title::before, .gods-title::after { display: none; }
         .subtitle { font-size: 16px; }
         .map-frame { margin-bottom: 48px; }
         .map-marker { width: 28px; }
         .location-note { bottom: 8px; padding: 6px 10px; font-size: 14px; }
+        .god-section { margin-bottom: 54px; }
+        .god-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+        .god-card { padding: 16px 18px 20px; }
+        .god-card h3 { font-size: 20px; }
+        .god-card p { font-size: 15px; }
+      }
+      @media (max-width: 430px) {
+        .god-grid { grid-template-columns: 1fr; }
+        .god-card img { width: min(100%, 230px); }
       }
       @media (prefers-reduced-motion: reduce) {
         *, *::before, *::after { transition-duration: .01ms !important; }
+        .realm-intro .title-row, .realm-intro .subtitle { animation: none !important; }
+        .reveal { opacity: 1; transform: none; transition: none; }
       }
     </style>
   </head>
@@ -179,6 +322,120 @@
         </button>
         <output class="location-note" aria-live="polite"></output>
       </section>
+
+      <section class="gods-intro" aria-labelledby="gods-title">
+        <div class="title-row"><h2 class="gods-title" id="gods-title">The Gods</h2></div>
+      </section>
+
+      <nav class="god-filters" aria-label="Filter gods by domain">
+        <button class="god-filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="god-filter" type="button" data-filter="nature" aria-pressed="false">Nature</button>
+        <button class="god-filter" type="button" data-filter="elements" aria-pressed="false">Elements</button>
+        <button class="god-filter" type="button" data-filter="fate" aria-pressed="false">Life &amp; Fate</button>
+        <button class="god-filter" type="button" data-filter="society" aria-pressed="false">Society</button>
+        <button class="god-filter" type="button" data-filter="arts" aria-pressed="false">Arts</button>
+        <output class="god-filter-status" aria-live="polite">Showing all 19 gods.</output>
+      </nav>
+
+      <section class="god-section" id="god-directory">
+        <div class="god-grid">
+          <article class="god-card" id="god-amara" data-sigil="♡" data-domain="society">
+            <img src="Religion/Amara%3ALove%26Beauty.png" alt="Amara">
+            <h3>Amara</h3>
+            <p>Love and beauty</p>
+          </article>
+          <article class="god-card" id="god-amnis" data-sigil="≋" data-domain="nature">
+            <img src="Religion/Amnis%3ARivers%26Streams.png" alt="Amnis">
+            <h3>Amnis</h3>
+            <p>Rivers and streams</p>
+          </article>
+          <article class="god-card" id="god-aquarius" data-sigil="♆" data-domain="nature">
+            <img src="Religion/Aquarius%3AWaters%26seas.png" alt="Aquarius">
+            <h3>Aquarius</h3>
+            <p>Waters and seas</p>
+          </article>
+          <article class="god-card" id="god-bellator" data-sigil="⚔" data-domain="society">
+            <img src="Religion/Bellator%3AWarriors.png" alt="Bellator">
+            <h3>Bellator</h3>
+            <p>Warriors</p>
+          </article>
+          <article class="god-card" id="god-caelum" data-sigil="☼" data-domain="elements">
+            <img src="Religion/Caelum%3Asun%2Csky%2Candlight.png" alt="Caelum">
+            <h3>Caelum</h3>
+            <p>Sun, sky, and light</p>
+          </article>
+          <article class="god-card" id="god-cantilena" data-sigil="♫" data-domain="arts">
+            <img src="Religion/Cantilena%20music%20and%20art.png" alt="Cantilena, goddess of music and art">
+            <h3>Cantilena</h3>
+            <p>Music and art</p>
+          </article>
+          <article class="god-card" id="god-fauna" data-sigil="❀" data-domain="nature">
+            <img src="Religion/Fauna%3APlants%26Flowers.png" alt="Fauna">
+            <h3>Fauna</h3>
+            <p>Plants and flowers</p>
+          </article>
+          <article class="god-card" id="god-faunus" data-sigil="♧" data-domain="nature">
+            <img src="Religion/Faunus%3AAnimals%26Wildlife.png" alt="Faunus">
+            <h3>Faunus</h3>
+            <p>Animals and wildlife</p>
+          </article>
+          <article class="god-card" id="god-fortuna" data-sigil="✧" data-domain="fate">
+            <img src="Religion/Fortuna%3ALuck.png" alt="Fortuna">
+            <h3>Fortuna</h3>
+            <p>Luck</p>
+          </article>
+          <article class="god-card" id="god-fures" data-sigil="◈" data-domain="society">
+            <img src="Religion/Fures%3AThieves.png" alt="Fures">
+            <h3>Fures</h3>
+            <p>Thieves</p>
+          </article>
+          <article class="god-card" id="god-ignis" data-sigil="△" data-domain="elements">
+            <img src="Religion/Ignis%3AFire.png" alt="Ignis">
+            <h3>Ignis</h3>
+            <p>Fire</p>
+          </article>
+          <article class="god-card" id="god-itineran" data-sigil="➶" data-domain="society">
+            <img src="Religion/Itineran%3ATravelers.png" alt="Itineran">
+            <h3>Itineran</h3>
+            <p>Travelers</p>
+          </article>
+          <article class="god-card" id="god-mortem" data-sigil="†" data-domain="fate">
+            <img src="Religion/Mortem%3Adeathanddarkness.png" alt="Mortem">
+            <h3>Mortem</h3>
+            <p>Death and darkness</p>
+          </article>
+          <article class="god-card" id="god-peperia" data-sigil="♡" data-domain="society">
+            <img src="Religion/Peperia%3AMarriage%3AMothers%26Birth.png" alt="Peperia">
+            <h3>Peperia</h3>
+            <p>Marriage, mothers, and birth</p>
+          </article>
+          <article class="god-card" id="god-svarog" data-sigil="✣" data-domain="fate">
+            <img src="Religion/Svarog%3AHealing%26Prophecy.png" alt="Svarog">
+            <h3>Svarog</h3>
+            <p>Healing and prophecy</p>
+          </article>
+          <article class="god-card" id="god-tempest" data-sigil="◷" data-domain="fate">
+            <img src="Religion/tempus%3Atime.png" alt="Tempest">
+            <h3>Tempest</h3>
+            <p>Time</p>
+          </article>
+          <article class="god-card" id="god-venari" data-sigil="♧" data-domain="nature">
+            <img src="Religion/Venari%3Aunmarriedwomen%26thehunt.png" alt="Venari">
+            <h3>Venari</h3>
+            <p>Unmarried women and the hunt</p>
+          </article>
+          <article class="god-card" id="god-veritas" data-sigil="⚖" data-domain="society">
+            <img src="Religion/Veritas%3AJustice%26Truth.png" alt="Veritas">
+            <h3>Veritas</h3>
+            <p>Justice and truth</p>
+          </article>
+          <article class="god-card" id="god-zizillia" data-sigil="♁" data-domain="nature">
+            <img src="Religion/Zizillia%3AFertility%2C%20Home%20%26Earth.png" alt="Zizillia">
+            <h3>Zizillia</h3>
+            <p>Fertility, home, and earth</p>
+          </article>
+        </div>
+      </section>
     </main>
     <footer>© 2026 Marielle A. Bent · The Godwoven Trilogy</footer>
 
@@ -193,6 +450,57 @@
           marker.setAttribute("aria-expanded", String(!wasExpanded));
           locationNote.textContent = wasExpanded ? "" : "More about this location coming soon.";
           locationNote.classList.toggle("visible", !wasExpanded);
+        });
+      });
+
+      const godFilters = document.querySelectorAll(".god-filter");
+      const godCards = document.querySelectorAll(".god-card");
+      const godDirectoryCards = document.querySelectorAll("#god-directory .god-card");
+      const godFilterStatus = document.querySelector(".god-filter-status");
+      const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if ("IntersectionObserver" in window && !motionPreference.matches) {
+        const revealItems = document.querySelectorAll(".map-frame, .gods-intro, .god-filters, #god-directory .god-card");
+        revealItems.forEach((item) => item.classList.add("reveal"));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach((item) => revealObserver.observe(item));
+        const revealPassedItems = () => {
+          revealItems.forEach((item) => {
+            if (item.getBoundingClientRect().bottom < 0) {
+              item.classList.add("is-visible");
+              revealObserver.unobserve(item);
+            }
+          });
+        };
+        window.addEventListener("scroll", revealPassedItems, { passive: true });
+        revealPassedItems();
+      }
+
+      godFilters.forEach((filter) => {
+        filter.addEventListener("click", () => {
+          const domain = filter.dataset.filter;
+          let visibleCount = 0;
+
+          godFilters.forEach((button) => {
+            button.setAttribute("aria-pressed", String(button === filter));
+          });
+          godCards.forEach((card) => {
+            const isVisible = domain === "all" || card.dataset.domain === domain;
+            card.hidden = !isVisible;
+          });
+          godDirectoryCards.forEach((card) => {
+            if (!card.hidden) visibleCount += 1;
+          });
+
+          const category = domain === "all" ? "all" : filter.textContent.trim();
+          godFilterStatus.textContent = `Showing ${visibleCount} god${visibleCount === 1 ? "" : "s"}${domain === "all" ? "" : ` in ${category}`}.`;
         });
       });
     </script>
