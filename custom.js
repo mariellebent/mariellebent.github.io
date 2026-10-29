@@ -83,7 +83,7 @@
       });
 
       const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
-      const revealItems = document.querySelectorAll(".book-detail, .coming-book, .world-section > *, .character-section");
+      const revealItems = document.querySelectorAll(".book-detail, .coming-book, .world-section > *, .character-section, .character-card");
 
       if ("IntersectionObserver" in window && !motionPreference.matches) {
         revealItems.forEach((item) => item.classList.add("reveal"));
