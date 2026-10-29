@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#191817">
+    <meta name="description" content="Enter the Godwoven Trilogy: epic fantasy, gothic mystery, and forbidden magic by Marielle A. Bent.">
+    <title>Shadows &amp; Secrets | Marielle A. Bent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #1b1a19;
+        --night: #101015;
+        --gold: #c6a06c;
+        --gold-muted: #8e714b;
+        --cream: #e8e0d7;
+        --muted: #c3b9b0;
+        --purple: #211034;
+        --serif: "Cormorant Garamond", Georgia, serif;
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--cream);
+        font-family: var(--serif);
+        font-size: 16px;
+        line-height: 1.35;
+      }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+      .site-header {
+        height: 62px;
+        width: 100%;
+        padding: 0 clamp(22px, 4.5vw, 68px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        top: 0;
+        z-index: 10;
+        background: transparent;
+        transition: background-color .25s ease;
+      }
+      .site-header.scrolled {
+        background: #1d1c1b;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--cream);
+        font-size: 20px;
+        letter-spacing: .06em;
+      }
+      .brand img {       width: 42px; height: 37px; object-fit: contain; }
+      .menu-button {
+        padding: 6px 0 6px 14px;
+        border: 0;
+        background: transparent;
+        color: var(--cream);
+        font: 500 15px var(--serif);
+        cursor: pointer;
+      }
+      .menu-panel {
+        display: none;
+        position: absolute;
+        right: clamp(22px, 4.5vw, 68px);
+        top: 54px;
+        min-width: 190px;
+        padding: 12px 18px;
+        background: #211f1e;
+        border: 1px solid var(--gold-muted);
+        box-shadow: 0 12px 30px #0008;
+      }
+      .menu-panel.open { display: grid; }
+      .menu-panel a {
+        padding: 9px 0;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      .menu-panel a:hover { color: var(--gold); }
+      .hero {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 68px 22px 58px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          linear-gradient(180deg, rgba(8, 9, 15, .52), rgba(8, 8, 10, .78)),
+          url("HeroHome.jpg") center 52% / cover no-repeat;
+      }
+      .hero-divider, .hero h1, .hero-tags, .hero .actions { animation: hero-arrive .9s both; }
+      .hero h1 { animation-delay: .12s; }
+      .hero-tags { animation-delay: .24s; }
+      .hero .actions { animation-delay: .36s; }
+      @keyframes hero-arrive {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hero-divider {
+        width: min(340px, 68vw);
+        height: 52px;
+        object-fit: contain;
+        margin-bottom: 12px;
+      }
+      h1, h2, h3, p { margin-top: 0; }
+      .hero h1 {
+        margin-bottom: 22px;
+        color: var(--gold);
+        font-size: clamp(38px, 6vw, 66px);
+        font-weight: 400;
+        line-height: .95;
+        letter-spacing: .025em;
+        text-transform: uppercase;
+      }
+      .hero-tags {
+        display: flex;
+        justify-content: center;
+        gap: clamp(24px, 7vw, 76px);
+        margin-bottom: 58px;
+        color: #e3d9e6;
+        font-size: clamp(16px, 2vw, 20px);
+      }
+      .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+      .button {
+        min-height: 46px;
+        padding: 9px 18px;
+        border: 1px solid #6e5b79;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: var(--purple);
+        color: var(--cream);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: .055em;
+        font: 500 13px var(--serif);
+        transition: border-color .2s ease, background .2s ease, transform .2s ease;
+      }
+      .button:hover { border-color: var(--gold); transform: translateY(-2px); }
+      .button.outline { background: rgba(10, 10, 12, .55); border-color: #726a6a; }
+      .button-icon {
+        width: 23px;
+        height: 23px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--gold-muted);
+        border-radius: 50%;
+        color: var(--gold);
+        font-size: 14px;
+        line-height: 1;
+      }
+      .section-wrap { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }
+      .book-section {
+        padding: 62px 0 74px;
+        border-top: 24px solid #141313;
+      }
+      .book-feature {
+        display: grid;
+        grid-template-columns: minmax(240px, .85fr) 1.15fr;
+        align-items: center;
+        gap: clamp(32px, 7vw, 88px);
+        max-width: 860px;
+        margin: 0 auto;
+      }
+      .book-art {
+        max-height: 360px;
+        width: auto;
+        margin: 0 auto;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 18px #0008);
+        animation: book-drift 6s ease-in-out infinite;
+      }
+      @keyframes book-drift {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      .book-copy h2 {
+        margin: 0 0 5px;
+        color: var(--gold);
+        font-size: 30px;
+        font-weight: 500;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      .eyebrow { margin-bottom: 16px; color: var(--muted); font-style: italic; font-size: 16px; }
+      .book-copy > p:not(.eyebrow) { max-width: 480px; color: #d6cfc8; font-size: 19px; line-height: 1.15; }
+      .book-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0 20px; }
+      .book-tags span {
+        min-width: 92px;
+        padding: 4px 10px;
+        border: 1px solid #655e5a;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 14px;
+      }
+      .book-copy .actions { justify-content: flex-start; }
+      .world-section { padding: 12px 0 76px; text-align: center; }
+      .section-divider { width: min(350px, 70vw); height: 50px; object-fit: contain; margin: 0 auto 10px; }
+      .section-title {
+        margin-bottom: 8px;
+        color: var(--gold);
+        font-size: clamp(32px, 4.5vw, 46px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      .section-subtitle { margin-bottom: 40px; color: #d4c9c1; font-size: 19px; font-style: italic; }
+      .world-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .world-card {
+        min-height: 290px;
+        padding: 20px 18px 18px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 21px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #1d1b1a;
+        transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      }
+      .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0005; }
+      .world-card img { width: min(190px, 90%); height: 55px; object-fit: contain; margin-bottom: 8px; }
+      .world-card:nth-child(2) img { width: 150px; }
+      .world-card h3 { margin: 4px 0 7px; color: var(--gold); font-size: 21px; font-weight: 500; }
+      .world-card .tagline { min-height: 32px; margin-bottom: 10px; color: #cfc4ba; font-size: 14px; font-style: italic; }
+      .world-card p:last-of-type { flex: 1; max-width: 260px; color: #ded6cf; font-size: 14px; line-height: 1.1; }
+      .world-card .button { margin-top: 10px; }
+      .author-section { padding: 0 0 76px; }
+      .author-card {
+        border: 1px solid var(--gold-muted);
+        border-radius: 21px;
+        padding: 18px clamp(20px, 6vw, 72px);
+        display: grid;
+        grid-template-columns: minmax(230px, .85fr) 1.15fr;
+        align-items: center;
+        gap: clamp(24px, 7vw, 76px);
+      }
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+      .author-portrait { width: min(330px, 100%); aspect-ratio: 1; object-fit: cover; border-radius: 50%; }
+      .author-copy .eyebrow { margin-bottom: 2px; font-size: 18px; }
+      .author-copy h2 { margin-bottom: 12px; color: var(--cream); font-size: clamp(30px, 4.5vw, 42px); font-weight: 400; line-height: 1; text-transform: uppercase; }
+      .author-copy p:not(.eyebrow) { margin-bottom: 18px; color: #d5cdc6; font-size: 15px; line-height: 1.18; }
+      .author-copy .button { color: var(--gold); background: transparent; }
+      .newsletter {
+        min-height: 300px;
+        padding: 48px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background:
+          linear-gradient(90deg, rgba(10, 8, 16, .68), rgba(10, 8, 16, .62)),
+          url("Newsletterbg (1).jpg") center / cover no-repeat;
+      }
+      .newsletter h2 { margin-bottom: 3px; color: var(--gold); font-size: clamp(31px, 4.5vw, 44px); font-weight: 500; line-height: 1; text-transform: uppercase; }
+      .newsletter .promise { margin-bottom: 20px; font-size: 22px; font-style: italic; }
+      .newsletter p:not(.promise) { max-width: 600px; margin-bottom: 22px; color: #ddd4cf; font-size: 18px; line-height: 1.2; }
+      .newsletter .button { min-width: 180px; }
+      footer { min-height: 90px; display: grid; place-items: center; color: #9f958b; font-size: 13px; }
+      :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+
+      @media (max-width: 700px) {
+        body { font-size: 16px; }
+        .hero { background-position: 44% center; }
+        .hero-tags { gap: 12px 22px; margin-bottom: 54px; flex-wrap: wrap; }
+        .book-section { padding: 55px 0 70px; }
+        .book-feature { grid-template-columns: 1fr; gap: 28px; }
+        .book-art { max-height: 300px; }
+        .book-copy { text-align: center; }
+        .book-copy > p:not(.eyebrow) { margin-left: auto; margin-right: auto; font-size: 18px; }
+        .book-copy .actions { justify-content: center; }
+        .world-section { padding-bottom: 70px; }
+        .section-subtitle { margin-bottom: 34px; }
+        .world-cards { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; gap: 16px; }
+        .world-card { min-height: 270px; }
+        .author-section { padding-bottom: 70px; }
+        .author-card { grid-template-columns: 1fr; gap: 24px; padding: 26px; text-align: center; }
+        .author-portrait { width: min(270px, 100%); margin: 0 auto; }
+        .newsletter { min-height: 300px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; }
+        .hero-divider, .hero h1, .hero-tags, .hero .actions, .book-art { animation: none !important; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Marielle A. Bent home">
+        <img src="Logo.png" alt="">
+        <span>M.A. Bent</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu">Menu</button>
+      <nav class="menu-panel" id="site-menu" aria-label="Main navigation">
+        <a href="book.html">The Book</a>
+        <a href="book.html">Explore the Godwoven Trilogy</a>
+        <a href="realm.html">Menu</a>
+        <a href="#world">The Godwoven World</a>
+        <a href="#author">Meet the Author</a>
+        <a href="#newsletter">Mailing List</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-divider" src="06_antique_gold_diamond_divider 1 (1).png" alt="">
+        <h1 id="hero-title">Shadows &amp; Secrets</h1>
+        <div class="hero-tags" aria-label="Genres">
+          <span>Adult Epic Fantasy</span>
+          <span>Gothic Mystery</span>
+          <span>Forbidden Magic</span>
+        </div>
+        <div class="actions">
+          <a class="button" href="book.html"><span class="button-icon" aria-hidden="true">☾</span>Discover the book</a>
+          <a class="button outline" href="#newsletter"><span class="button-icon" aria-hidden="true">✦</span>Join the mailing list</a>
+        </div>
+      </section>
+
+      <section class="book-section" id="book" aria-labelledby="book-title">
+        <div class="section-wrap book-feature">
+          <img class="book-art" src="shadowsandsecretsbook.png" alt="Shadows and Secrets, Book One of the Godwoven Trilogy">
+          <div class="book-copy">
+            <h2 id="book-title">Shadows and Secrets</h2>
+            <p class="eyebrow">Book 1 of the Godwoven Trilogy &nbsp; ───</p>
+            <p>In a land ruled by a tyrant dragon riding emperor who has outlawed ether, Saber hides in plain sight—using her forbidden power to see the dead and solve murders no one else can...</p>
+            <div class="book-tags" aria-label="Book themes">
+              <span>Music mystery</span>
+              <span>Forbidden Magic</span>
+              <span>Dragon riders</span>
+              <span>Thieves</span>
+            </div>
+            <div class="actions">
+              <a class="button" href="#newsletter"><span class="button-icon" aria-hidden="true">☾</span>Get release updates</a>
+              <a class="button outline" href="book.html"><span class="button-icon" aria-hidden="true">✦</span>Explore the trilogy</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="world-section section-wrap" id="world" aria-labelledby="world-title">
+        <img class="section-divider" src="05_antique_gold_crescent_magic_divider 1.png" alt="">
+        <h2 class="section-title" id="world-title">Enter the Godwoven World</h2>
+        <p class="section-subtitle">A realm shaped by gods, ether, and secrets buried for centuries</p>
+        <div class="world-cards">
+          <article class="world-card">
+            <img src="04_antique_gold_star_divider 1.png" alt="">
+            <h3>The Gods</h3>
+            <p class="tagline">Why shape the world? Their influence remains.</p>
+            <p>Countless gods are worshiped, feared, forgotten, and forbidden. Their wars, bargains, and mistakes still echo through the world.</p>
+            <a class="button" href="#book"><span class="button-icon" aria-hidden="true">✦</span>Discover the gods</a>
+          </article>
+          <article class="world-card">
+            <img src="05_antique_gold_crescent_magic_divider 1.png" alt="">
+            <h3>Etherals and Daemons</h3>
+            <p class="tagline">Not everything living of ether belongs here.</p>
+            <p>Etherals are immortal beings woven from ether itself. Daemons are something darker—and their return may signal an oldest, greater danger.</p>
+            <a class="button" href="#book"><span class="button-icon" aria-hidden="true">☾</span>Learn about ether</a>
+          </article>
+          <article class="world-card">
+            <img src="04_antique_gold_star_divider 1.png" alt="">
+            <h3>The Empire</h3>
+            <p class="tagline">Magic is forbidden. Dragons watch the crown.</p>
+            <p>Countless gods are worshiped, feared, forgotten, and forbidden. Their wars, bargains, and mistakes still echo through the world.</p>
+            <a class="button" href="realm.html"><span class="button-icon" aria-hidden="true">✦</span>Explore the realm</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="author-section section-wrap" id="author" aria-labelledby="author-title">
+        <div class="author-card">
+          <img class="author-portrait" src="Ellipse 3 (1).jpg" alt="Portrait of author Marielle A. Bent">
+          <div class="author-copy">
+            <p class="eyebrow">Meet the Author</p>
+            <h2 id="author-title">Marielle A. Bent</h2>
+            <p>Marielle Bent lives in Wisconsin with her husband, their daughter, a boisterous dog and a grumpy cat. She began writing fantasy after a lifelong love of stories about dragons, gods, and unlikely heroes. Her work draws inspiration from the epic adventures she grew up reading, blending classic fantasy elements with darker mythology and character-driven storytelling. She is deeply fascinated by characters who carry both deep empathy and the capacity for darkness. This became the foundation of The Godwoven Trilogy.</p>
+            <a class="button outline" href="#newsletter"><span class="button-icon" aria-hidden="true">✦</span>Join the mailing list</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
+        <h2 id="newsletter-title">Secrets Belong to the Dead</h2>
+        <p class="promise">This one belongs to you</p>
+        <p>Join M.A. Bent’s mailing list for book updates, behind-the-scenes material, and exclusive content delivered straight to your inbox.</p>
+        <a class="button" href="#author">Enter the shadows</a>
+      </section>
+    </main>
+
+    <footer>© <span id="year">2026</span> Marielle A. Bent · The Godwoven Trilogy</footer>
+    <script>
+      const menuButton = document.querySelector(".menu-button");
+      const menuPanel = document.querySelector(".menu-panel");
+      const siteHeader = document.querySelector(".site-header");
+
+      const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const revealItems = document.querySelectorAll(".book-feature, .world-section > *, .author-card, .newsletter > *");
+
+      if ("IntersectionObserver" in window && !motionPreference.matches) {
+        revealItems.forEach((item) => item.classList.add("reveal"));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+
+      const updateHeader = () => {
+        siteHeader.classList.toggle("scrolled", window.scrollY > 12);
+      };
+
+      window.addEventListener("scroll", updateHeader, { passive: true });
+      updateHeader();
+
+      menuButton.addEventListener("click", () => {
+        const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!isOpen));
+        menuPanel.classList.toggle("open", !isOpen);
+      });
+
+      menuPanel.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) {
+          menuButton.setAttribute("aria-expanded", "false");
+          menuPanel.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>

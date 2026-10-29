@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#030a10">
+    <meta name="description" content="Explore the Godwoven Trilogy: Shadows and Secrets, Shadows and Fractures, and the final book by Marielle A. Bent.">
+    <title>The Godwoven Trilogy | Marielle A. Bent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: dark;
+        --night: #030a10;
+        --gold: #c6a06c;
+        --gold-muted: #806747;
+        --cream: #e8e0d7;
+        --muted: #c3b9b0;
+        --purple: #211034;
+        --serif: "Cormorant Garamond", Georgia, serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--night);
+        color: var(--cream);
+        font: 16px/1.3 var(--serif);
+      }
+      a { color: inherit; }
+      img { display: block; max-width: 100%; }
+      h1, h2, h3, p { margin-top: 0; }
+      .page-header {
+        width: min(1040px, calc(100% - 56px));
+        height: 60px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 16px;
+        font-style: italic;
+      }
+      .brand img { width: 30px; height: 27px; object-fit: contain; }
+      .home-link {
+        color: var(--muted);
+        font-size: 15px;
+        text-decoration: none;
+      }
+      .home-link:hover { color: var(--gold); }
+      .page-main { width: min(1040px, calc(100% - 56px)); margin: 0 auto; }
+      .trilogy-intro { padding: 10px 0 54px; text-align: center; }
+      .trilogy-intro .title-row, .trilogy-intro .intro-subtitle, .trilogy-intro .book-gallery { animation: hero-arrive .9s both; }
+      .trilogy-intro .intro-subtitle { animation-delay: .12s; }
+      .trilogy-intro .book-gallery { animation-delay: .24s; }
+      @keyframes hero-arrive {
+        from { opacity: 0; transform: translateY(18px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(14px, 3vw, 36px);
+      }
+      .title-row::before, .title-row::after {
+        content: "";
+        width: clamp(40px, 10vw, 120px);
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--gold-muted), var(--gold));
+        position: relative;
+      }
+      .title-row::before { background: linear-gradient(90deg, transparent, var(--gold-muted), var(--gold)); }
+      .title-row::after { background: linear-gradient(90deg, var(--gold), var(--gold-muted), transparent); }
+      .title-row::before { box-shadow: 28px 0 0 -0.2px var(--gold-muted); }
+      .title-row h1 {
+        margin: 0;
+        color: var(--gold);
+        font-size: clamp(29px, 4.5vw, 42px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .title-row h1::before, .title-row h1::after { content: "✥"; color: var(--gold); font-size: .52em; vertical-align: middle; }
+      .title-row h1::before { margin-right: .5em; }
+      .title-row h1::after { margin-left: .5em; }
+      .intro-subtitle { margin: 10px 0 26px; color: #d6cbc1; font-size: 16px; font-style: italic; }
+      .book-gallery {
+        min-height: 285px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(24px, 6vw, 72px);
+      }
+      .book-cover {
+        position: relative;
+        flex: none;
+      }
+      .book-cover img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 9px 12px #0009);
+      }
+      .cover-status {
+        position: absolute;
+        left: 50%;
+        bottom: 12%;
+        transform: translateX(-50%);
+        padding: 3px 6px;
+        border: 1px solid rgba(198, 160, 108, .72);
+        background: rgba(3, 10, 16, .86);
+        color: var(--gold);
+        font-size: clamp(8px, .9vw, 11px);
+        line-height: 1.1;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        white-space: nowrap;
+      }
+      .gallery-book { width: clamp(100px, 15vw, 170px); aspect-ratio: .7; }
+      .gallery-book.featured { width: clamp(115px, 17vw, 190px); aspect-ratio: .7; }
+      .gallery-book img { height: 100%; }
+      .gallery-book.featured { animation: book-drift 6s ease-in-out infinite; }
+      @keyframes book-drift {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      .book-detail {
+        margin-bottom: 28px;
+        padding: 16px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 30px;
+        display: grid;
+        grid-template-columns: minmax(150px, .65fr) 1.2fr 1fr;
+        align-items: center;
+        gap: clamp(16px, 3.5vw, 34px);
+        overflow: hidden;
+      }
+      .book-detail-cover { width: 100%; max-width: 150px; aspect-ratio: .7; margin: auto; }
+      .book-detail-copy h2, .coming-copy h2, .character-copy h2 {
+        margin-bottom: 3px;
+        color: var(--gold);
+        font-size: clamp(22px, 2.7vw, 30px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      .book-detail-copy .subtitle, .coming-copy .subtitle { margin-bottom: 11px; font-size: 16px; font-style: italic; }
+      .book-detail-copy p:not(.subtitle) { margin-bottom: 8px; color: #d5ccc4; font-size: 13px; line-height: 1.16; }
+      .book-facts h3 {
+        margin: 12px 0 7px;
+        color: var(--gold);
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .book-facts h3:first-child { margin-top: 0; }
+      .book-facts h3::before { content: "✥"; padding-right: 7px; }
+      .fact-list { display: flex; flex-wrap: wrap; gap: 5px 11px; color: #d4cbc1; font-size: 12px; }
+      .retail-links { display: flex; flex-wrap: wrap; gap: 7px; }
+      .retail-links span {
+        min-width: 78px;
+        padding: 4px 8px;
+        border: 1px solid #6c645d;
+        border-radius: 2px;
+        text-align: center;
+        color: var(--cream);
+        font-size: 12px;
+      }
+      .coming-book {
+        min-height: 180px;
+        margin-bottom: 26px;
+        padding: 16px 22px 16px 18px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 28px;
+        display: grid;
+        grid-template-columns: 125px 1fr auto;
+        align-items: center;
+        gap: 22px;
+        background:
+          linear-gradient(90deg, var(--night) 0%, rgba(3, 10, 16, .96) 62%, rgba(3, 10, 16, .5)),
+          url("HeroHome.jpg") right center / auto 100% no-repeat;
+        overflow: hidden;
+      }
+      .coming-book.third {
+        min-height: 180px;
+        margin-bottom: 60px;
+      }
+      .coming-book > .book-cover { width: 108px; aspect-ratio: .7; margin: auto; }
+      .coming-copy p:not(.subtitle) { margin-bottom: 8px; color: #d5ccc4; font-size: 13px; }
+      .coming-label { margin: 14px 0 0; text-align: center; font-size: 14px; text-transform: uppercase; }
+      .button {
+        min-height: 40px;
+        padding: 7px 12px;
+        border: 1px solid #6e5b79;
+        border-radius: 5px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        background: var(--purple);
+        color: var(--cream);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        white-space: nowrap;
+        font: 500 11px var(--serif);
+        transition: border-color .2s ease, transform .2s ease;
+      }
+      .button:hover { border-color: var(--gold); transform: translateY(-2px); }
+      .button-icon {
+        width: 20px;
+        height: 20px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: var(--gold);
+        font-size: 13px;
+      }
+      .soon-note { margin: 0; color: var(--gold); font-size: 13px; text-align: center; text-transform: uppercase; }
+      .world-section { padding: 0 0 58px; text-align: center; }
+      .section-divider { width: min(320px, 65vw); height: 42px; margin: 0 auto 10px; object-fit: contain; }
+      .world-section h2 {
+        margin-bottom: 8px;
+        color: var(--gold);
+        font-size: clamp(31px, 4.5vw, 42px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+      }
+      .world-section > p { margin-bottom: 38px; color: #d6cbc1; font-size: 16px; font-style: italic; }
+      .world-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+      .world-card {
+        min-height: 270px;
+        padding: 17px 15px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 20px 20px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(3, 10, 16, .55);
+        transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      }
+      .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0006; }
+      .world-card img { width: min(150px, 90%); height: 38px; margin-bottom: 6px; object-fit: contain; }
+      .world-card:nth-child(2) img { width: 130px; }
+      .world-card h3 { margin: 2px 0 5px; color: var(--gold); font-size: 19px; font-weight: 400; text-transform: uppercase; }
+      .world-card .tagline { min-height: 30px; margin-bottom: 8px; font-size: 13px; font-style: italic; }
+      .world-card p:not(.tagline) { flex: 1; margin-bottom: 12px; color: #d6cdc5; font-size: 13px; line-height: 1.1; }
+      .world-card .button { min-height: 35px; padding: 5px 9px; font-size: 10px; }
+      .character-section {
+        margin: 0 0 76px;
+        padding: 15px;
+        border: 1px solid var(--gold-muted);
+        border-radius: 24px;
+        display: grid;
+        grid-template-columns: 1.2fr .9fr;
+        align-items: center;
+        gap: 20px;
+      }
+      .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+      .reveal.is-visible { opacity: 1; transform: translateY(0); }
+      .character-image { width: 100%; aspect-ratio: 1.5; object-fit: cover; }
+      .character-copy { padding: 10px; text-align: center; }
+      .character-copy h2 { font-size: clamp(29px, 4.5vw, 40px); }
+      .character-copy .epithet { margin-bottom: 20px; font-size: 16px; font-style: italic; }
+      .character-copy p:not(.epithet) { margin-bottom: 20px; color: #d5ccc4; font-size: 15px; }
+      footer { min-height: 54px; color: #9e958b; text-align: center; font-size: 13px; }
+      :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+      @media (max-width: 760px) {
+        .page-header, .page-main { width: min(100% - 40px, 520px); }
+        .trilogy-intro { padding-top: 18px; padding-bottom: 38px; }
+        .title-row { gap: 8px; }
+        .title-row::before, .title-row::after { width: 20px; }
+        .title-row h1 { font-size: clamp(23px, 5.6vw, 35px); white-space: normal; }
+        .title-row h1::before, .title-row h1::after { display: none; }
+        .book-gallery { min-height: 225px; gap: 12px; }
+        .gallery-book { width: 28%; }
+        .gallery-book.featured { width: 34%; }
+        .book-detail { grid-template-columns: 90px 1fr; gap: 14px; padding: 14px; border-radius: 20px; }
+        .book-detail-cover { width: 90px; }
+        .book-facts { grid-column: 1 / -1; border-top: 1px solid #514638; padding-top: 12px; }
+        .book-facts h3 { display: inline-block; margin-right: 12px; }
+        .book-facts h3:first-child { margin-top: 12px; }
+        .coming-book, .coming-book.third {
+          min-height: 155px;
+          grid-template-columns: 80px 1fr;
+          gap: 14px;
+          padding: 14px;
+          margin-bottom: 18px;
+          border-radius: 20px;
+        }
+        .coming-book > .book-cover { width: 72px; }
+        .coming-book > .button, .coming-book > .soon-note { grid-column: 2; justify-self: start; }
+        .coming-book.third { margin-bottom: 46px; }
+        .world-cards { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 14px; }
+        .world-card { min-height: 250px; }
+        .world-section > p { margin-bottom: 26px; }
+        .character-section { grid-template-columns: 1fr; gap: 14px; padding: 12px; margin-bottom: 50px; }
+        .character-image { aspect-ratio: 1.5; }
+      }
+      @media (max-width: 420px) {
+        .book-detail { grid-template-columns: 74px 1fr; }
+        .book-detail-copy h2, .coming-copy h2 { font-size: 21px; }
+        .intro-subtitle { font-size: 15px; }
+        .coming-book { grid-template-columns: 64px 1fr; }
+        .coming-book > .book-cover { width: 60px; }
+        .button { white-space: normal; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; }
+        .trilogy-intro .title-row, .trilogy-intro .intro-subtitle, .trilogy-intro .book-gallery, .gallery-book.featured { animation: none !important; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <a class="brand" href="index.html" aria-label="Marielle A. Bent home">
+        <img src="Logo.png" alt="">
+        <span>M.A. Bent</span>
+      </a>
+      <a class="home-link" href="index.html">Home</a>
+      <a class="home-link" href="realm.html">The Realm</a>
+    </header>
+
+    <main class="page-main">
+      <section class="trilogy-intro" aria-labelledby="trilogy-title">
+        <div class="title-row"><h1 id="trilogy-title">The Godwoven Trilogy</h1></div>
+        <p class="intro-subtitle">A realm shaped by gods, ether, and secrets buried for centuries</p>
+        <div class="book-gallery" aria-label="Books in the Godwoven Trilogy">
+          <div class="book-cover gallery-book">
+            <img src="shadowsandsecretsbook.png" alt="Shadows and Secrets, Book One">
+            <span class="cover-status">Cover coming soon</span>
+          </div>
+          <div class="book-cover gallery-book featured">
+            <img src="Shadowsandfracturesbook.png" alt="Shadows and Fractures, Book Two">
+            <span class="cover-status">Cover coming soon</span>
+          </div>
+          <div class="book-cover gallery-book">
+            <img src="comingsoonbook.png" alt="The Godwoven Trilogy, Book Three">
+            <span class="cover-status">Cover coming soon</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="book-detail" aria-labelledby="book-one-title">
+        <div class="book-cover book-detail-cover">
+          <img src="shadowsandsecretsbook.png" alt="Cover of Shadows and Secrets">
+          <span class="cover-status">Cover coming soon</span>
+        </div>
+        <div class="book-detail-copy">
+          <h2 id="book-one-title">Shadows &amp; Secrets</h2>
+          <p class="subtitle">Book one of the Godwoven Trilogy</p>
+          <p>In a land ruled by a tyrant dragon-riding emperor who has outlawed ether, Saber hides in plain sight—using her forbidden power to see the dead and solve murders no one else can.</p>
+          <p>The story blends gothic mystery, forbidden magic, dragon riders, ancient secrets, and a romantic subplot.</p>
+        </div>
+        <div class="book-facts">
+          <h3>Tropes/Themes</h3>
+          <div class="fact-list"><span>Murder mystery</span><span>Found family</span><span>Dragon riders</span><span>Thieves</span><span>Gods</span><span>Forbidden magic</span></div>
+          <h3>Content Notes</h3>
+          <div class="fact-list"><span>Available before release</span></div>
+          <h3>Retail Links</h3>
+          <div class="retail-links" aria-label="Retail links coming soon"><span>Amazon</span><span>Barnes &amp; Noble</span><span>IndieBound</span></div>
+        </div>
+      </section>
+
+      <section class="coming-book" aria-labelledby="book-two-title">
+        <div class="book-cover">
+          <img src="Shadowsandfracturesbook.png" alt="Cover of Shadows and Fractures">
+          <span class="cover-status">Cover coming soon</span>
+        </div>
+        <div class="coming-copy">
+          <h2 id="book-two-title">Shadows &amp; Fractures</h2>
+          <p class="subtitle">Book two of the Godwoven Trilogy</p>
+          <p>The shadows are deepening, and the cost of truth is rising.</p>
+          <p class="coming-label">Coming soon</p>
+        </div>
+        <a class="button" href="index.html#newsletter"><span class="button-icon" aria-hidden="true">✦</span>Get updates</a>
+      </section>
+
+      <section class="coming-book third" aria-labelledby="book-three-title">
+        <div class="book-cover">
+          <img src="comingsoonbook.png" alt="Cover art for the third book in the Godwoven Trilogy">
+          <span class="cover-status">Cover coming soon</span>
+        </div>
+        <div class="coming-copy">
+          <h2 id="book-three-title">Book 3</h2>
+          <p class="subtitle">Title to be revealed</p>
+          <p>The final volume of the Godwoven Trilogy</p>
+        </div>
+        <p class="soon-note">Details coming soon</p>
+      </section>
+
+      <section class="world-section" id="world" aria-labelledby="world-title">
+        <img class="section-divider" src="05_antique_gold_crescent_magic_divider 1.png" alt="">
+        <h2 id="world-title">Enter the Godwoven World</h2>
+        <p>A realm shaped by gods, ether, and secrets buried for centuries</p>
+        <div class="world-cards">
+          <article class="world-card">
+            <img src="04_antique_gold_star_divider 1.png" alt="">
+            <h3>The Gods</h3>
+            <p class="tagline">Why shape the world? Their influence remains.</p>
+            <p>Countless gods are worshiped, feared, forgotten, and forbidden. Their wars, bargains, and mistakes still echo through the world.</p>
+            <a class="button" href="index.html#world"><span class="button-icon" aria-hidden="true">✦</span>Discover the gods</a>
+          </article>
+          <article class="world-card">
+            <img src="05_antique_gold_crescent_magic_divider 1.png" alt="">
+            <h3>Etherals and Daemons</h3>
+            <p class="tagline">Not everything living of ether belongs here.</p>
+            <p>Etherals are immortal beings woven from ether itself. Daemons are something darker—and their return may signal a greater danger.</p>
+            <a class="button" href="index.html#world"><span class="button-icon" aria-hidden="true">☾</span>Learn about ether</a>
+          </article>
+          <article class="world-card">
+            <img src="04_antique_gold_star_divider 1.png" alt="">
+            <h3>The Empire</h3>
+            <p class="tagline">Magic is forbidden. Dragons watch the crown.</p>
+            <p>Countless gods are worshiped, feared, forgotten, and forbidden. Their wars, bargains, and mistakes still echo through the world.</p>
+            <a class="button" href="realm.html"><span class="button-icon" aria-hidden="true">✦</span>Explore the realm</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="character-section" aria-labelledby="character-title">
+        <img class="character-image" src="saber.png" alt="Saber standing in a moonlit city">
+        <div class="character-copy">
+          <h2 id="character-title">Meet Saber</h2>
+          <p class="epithet">Marked by the god of death<br>Haunted by the murdered dead</p>
+          <p>Saber has spent years hiding the power that makes her dangerous. Now the dead lead her to secrets that will change everything.</p>
+          <a class="button" href="index.html#book"><span class="button-icon" aria-hidden="true">✦</span>Meet the characters</a>
+        </div>
+      </section>
+    </main>
+    <footer>© 2026 Marielle A. Bent · The Godwoven Trilogy</footer>
+    <script>
+      const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const revealItems = document.querySelectorAll(".book-detail, .coming-book, .world-section > *, .character-section");
+
+      if ("IntersectionObserver" in window && !motionPreference.matches) {
+        revealItems.forEach((item) => item.classList.add("reveal"));
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.12 });
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
+    </script>
+  </body>
+</html>

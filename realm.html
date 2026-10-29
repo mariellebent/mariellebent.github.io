@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#191817">
+    <meta name="description" content="Explore the realm of the Godwoven Trilogy by Marielle A. Bent.">
+    <title>The Realm | Marielle A. Bent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #1b1a19;
+        --gold: #c6a06c;
+        --gold-muted: #8e714b;
+        --cream: #e8e0d7;
+        --serif: "Cormorant Garamond", Georgia, serif;
+      }
+      * { box-sizing: border-box; }
+      body {
+        min-height: 100vh;
+        margin: 0;
+        background: var(--ink);
+        color: var(--cream);
+        font: 16px/1.35 var(--serif);
+      }
+      a { color: inherit; }
+      .page-header {
+        width: min(1040px, calc(100% - 48px));
+        height: 68px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        color: var(--cream);
+        text-decoration: none;
+        font-size: 18px;
+        font-style: italic;
+      }
+      .brand img { width: 34px; height: 30px; object-fit: contain; }
+      .home-link { color: #c3b9b0; font-size: 15px; text-decoration: none; }
+      .home-link:hover { color: var(--gold); }
+      main { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }
+      .realm-intro { padding: 70px 0 52px; text-align: center; }
+      .title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(14px, 3vw, 36px);
+      }
+      .title-row::before, .title-row::after {
+        content: "";
+        width: clamp(40px, 10vw, 120px);
+        height: 1px;
+      }
+      .title-row::before { background: linear-gradient(90deg, transparent, var(--gold-muted), var(--gold)); }
+      .title-row::after { background: linear-gradient(90deg, var(--gold), var(--gold-muted), transparent); }
+      h1 {
+        margin: 0;
+        color: var(--gold);
+        font-size: clamp(34px, 5vw, 46px);
+        font-weight: 400;
+        line-height: 1;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      h1::before, h1::after { content: "✥"; color: var(--gold); font-size: .5em; vertical-align: middle; }
+      h1::before { margin-right: .55em; }
+      h1::after { margin-left: .55em; }
+      .subtitle { margin: 14px 0 0; color: #d6cbc1; font-size: 18px; font-style: italic; }
+      .map-frame {
+        position: relative;
+        width: min(780px, 80%);
+        aspect-ratio: 1116 / 651;
+        margin: 0 auto 70px;
+        overflow: hidden;
+        background: #d7c49c;
+        box-shadow: 0 15px 35px #0005;
+      }
+      .map-art { display: block; width: 100%; height: auto; }
+      .map-marker {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        width: clamp(28px, 4vw, 38px);
+        aspect-ratio: 1;
+        padding: 0;
+        transform: translate(-50%, -50%);
+        border: 0;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #211034;
+        color: #f0e9fa;
+        box-shadow: 0 2px 6px #0008;
+        cursor: pointer;
+        transition: transform .18s ease, background-color .18s ease;
+      }
+      .map-marker:hover, .map-marker[aria-expanded="true"] { transform: translate(-50%, -50%) scale(1.12); background: #382051; }
+      .map-marker svg { width: 58%; height: 58%; }
+      .location-note {
+        position: absolute;
+        left: 50%;
+        bottom: 14px;
+        width: max-content;
+        max-width: calc(100% - 28px);
+        padding: 8px 14px;
+        transform: translate(-50%, 10px);
+        border: 1px solid var(--gold-muted);
+        background: rgba(18, 15, 13, .94);
+        color: var(--cream);
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .18s ease, transform .18s ease;
+      }
+      .location-note.visible { opacity: 1; transform: translate(-50%, 0); }
+      footer { min-height: 54px; color: #9e958b; text-align: center; font-size: 13px; }
+      :focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+      @media (max-width: 700px) {
+        .page-header, main { width: calc(100% - 32px); }
+        .realm-intro { padding: 54px 0 36px; }
+        .title-row { gap: 8px; }
+        .title-row::before, .title-row::after { width: 24px; }
+        h1 { font-size: clamp(28px, 7vw, 38px); white-space: normal; }
+        h1::before, h1::after { display: none; }
+        .subtitle { font-size: 16px; }
+        .map-frame { margin-bottom: 48px; }
+        .map-marker { width: 28px; }
+        .location-note { bottom: 8px; padding: 6px 10px; font-size: 14px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { transition-duration: .01ms !important; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="page-header">
+      <a class="brand" href="index.html" aria-label="Marielle A. Bent home">
+        <img src="Logo.png" alt="">
+        <span>M.A. Bent</span>
+      </a>
+      <a class="home-link" href="index.html">Home</a>
+    </header>
+
+    <main>
+      <section class="realm-intro" aria-labelledby="realm-title">
+        <div class="title-row"><h1 id="realm-title">The Realm</h1></div>
+        <p class="subtitle">A realm shaped by gods, ether, and secrets buried for centuries</p>
+      </section>
+
+      <section class="map-frame" aria-label="Map of the Empire">
+        <img class="map-art" src="realm-map.png" alt="Antique fantasy map of the Empire, including the Tempest Sea, forests, mountain ranges, and compass rose">
+
+        <button class="map-marker" style="--x:45%; --y:30%" type="button" aria-label="Explore northern location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="map-marker" style="--x:64%; --y:31%" type="button" aria-label="Explore eastern location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="map-marker" style="--x:49%; --y:47%" type="button" aria-label="Explore central location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="map-marker" style="--x:43%; --y:64%" type="button" aria-label="Explore western location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="map-marker" style="--x:57%; --y:72%" type="button" aria-label="Explore southern location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <button class="map-marker" style="--x:64%; --y:84%" type="button" aria-label="Explore mountain location" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="2.4"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        </button>
+        <output class="location-note" aria-live="polite"></output>
+      </section>
+    </main>
+    <footer>© 2026 Marielle A. Bent · The Godwoven Trilogy</footer>
+
+    <script>
+      const markers = document.querySelectorAll(".map-marker");
+      const locationNote = document.querySelector(".location-note");
+
+      markers.forEach((marker) => {
+        marker.addEventListener("click", () => {
+          const wasExpanded = marker.getAttribute("aria-expanded") === "true";
+          markers.forEach((item) => item.setAttribute("aria-expanded", "false"));
+          marker.setAttribute("aria-expanded", String(!wasExpanded));
+          locationNote.textContent = wasExpanded ? "" : "More about this location coming soon.";
+          locationNote.classList.toggle("visible", !wasExpanded);
+        });
+      });
+    </script>
+  </body>
+</html>
