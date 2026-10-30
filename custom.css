@@ -45,7 +45,7 @@ body.home-page {
         color: var(--cream);
         font-size: 20px;
         letter-spacing: .06em;
-      }body.home-page .brand img {       width: 42px; height: 37px; object-fit: contain; }body.home-page .menu-button {
+      }body.home-page .brand img {       width: 60px; height: 60px; object-fit: cover; }body.home-page .menu-button {
         position: relative;
         z-index: 13;
         width: 52px;
@@ -259,7 +259,7 @@ body.book-page {
         text-decoration: none;
         font-size: 16px;
         font-style: italic;
-      }body.book-page .brand img { width: 30px; height: 27px; object-fit: contain; }body.book-page .menu-button {
+      }body.book-page .brand img { width: 60px; height: 60px; object-fit: cover; }body.book-page .menu-button {
         position: relative;
         z-index: 13;
         width: 52px;
@@ -507,7 +507,7 @@ body.contact-page {
         font-size: 20px;
         letter-spacing: .06em;
         text-decoration: none;
-      }body.contact-page .brand img { width: 42px; height: 37px; object-fit: contain; }body.contact-page .menu-button {
+      }body.contact-page .brand img { width: 60px; height: 60px; object-fit: cover; }body.contact-page .menu-button {
         position: relative;
         z-index: 13;
         width: 52px;
@@ -730,7 +730,7 @@ body.realm-page {
         text-decoration: none;
         font-size: 18px;
         font-style: italic;
-      }body.realm-page .brand img { width: 34px; height: 30px; object-fit: contain; }body.realm-page .menu-button {
+      }body.realm-page .brand img { width: 60px; height: 60px; object-fit: cover; }body.realm-page .menu-button {
         position: relative;
         z-index: 13;
         width: 52px;
