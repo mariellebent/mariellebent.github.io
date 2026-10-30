@@ -364,7 +364,7 @@ body.book-page {
         align-items: center;
         gap: clamp(16px, 3.5vw, 34px);
         overflow: hidden;
-      }body.book-page .book-detail-cover { width: 100%; max-width: 150px; aspect-ratio: .7; margin: auto; }body.book-page .book-detail-copy h2, body.book-page .coming-copy h2, body.book-page .character-copy h2 {
+      }body.book-page .book-detail-cover { width: 100%; max-width: 150px; aspect-ratio: .7; margin: auto; }body.book-page .book-detail-copy { padding-left: clamp(8px, 2vw, 20px); }body.book-page .book-detail-copy h2, body.book-page .coming-copy h2, body.book-page .character-copy h2 {
         margin-bottom: 3px;
         color: var(--gold);
         font-size: clamp(22px, 2.7vw, 30px);
@@ -1098,6 +1098,23 @@ body.book-page .world-card .button {
     gap: 16px;
   }
   body.book-page .world-card { min-height: 270px; }
+}
+
+@media (max-width: 700px) {
+  body.home-page .author-card { gap: 24px; padding: 26px; }
+  body.home-page .author-copy { gap: 18px; }
+  body.realm-page .map-frame { width: 100%; }
+  body.contact-page .contact-link { min-width: 0; }
+  body.contact-page .contact-link span { min-width: 0; overflow-wrap: anywhere; }
+}
+
+@media (max-width: 760px) {
+  body.book-page .page-header,
+  body.book-page .page-main { width: min(100% - 40px, 680px); }
+  body.book-page .cover-status {
+    max-width: calc(100% - 8px);
+    white-space: normal;
+  }
 }
 
     

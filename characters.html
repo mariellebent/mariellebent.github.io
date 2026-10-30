@@ -46,7 +46,10 @@
 
     <main class="page-main">
       <section class="characters-hero" aria-labelledby="characters-title">
-        <img class="characters-hero-image" src="images/herocharacterwider.png" alt="Saber and her companion before a moonlit city">
+        <picture>
+          <source media="(max-width: 760px)" srcset="images/herocharacternarrow.png">
+          <img class="characters-hero-image" src="images/herocharacterwider.png" alt="Saber and her companion before a moonlit city">
+        </picture>
         <div class="characters-hero-copy">
           <div class="title-row"><h1 id="characters-title">Meet the Characters</h1></div>
           <p class="intro-subtitle">The people caught in a world of forbidden magic, old gods, and dangerous secrets</p>
