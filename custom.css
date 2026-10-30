@@ -197,7 +197,7 @@ body.home-page {
         align-items: center;
         background: #1d1b1a;
         transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-      }body.home-page .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0005; }body.home-page .world-card img { width: min(190px, 90%); height: 55px; object-fit: contain; margin-bottom: 8px; }body.home-page .world-card:nth-child(2) img { width: 150px; }body.home-page .world-card h3 { margin: 4px 0 7px; color: var(--gold); font-size: 21px; font-weight: 500; }body.home-page .world-card .tagline { min-height: 32px; margin-bottom: 10px; color: #cfc4ba; font-size: 14px; font-style: italic; }body.home-page .world-card p:last-of-type { flex: 1; max-width: 260px; color: #ded6cf; font-size: 14px; line-height: 1.1; }body.home-page .world-card .button { margin-top: 10px; }body.home-page .author-section { padding: 0 0 76px; }body.home-page .author-card {
+      }body.home-page .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0005; }body.home-page .world-card img { width: min(190px, 90%); height: 55px; object-fit: contain; margin-bottom: 8px; }body.home-page .world-card:nth-child(2) img { width: 150px; }body.home-page .world-card h3 { margin: 4px 0 7px; color: var(--gold); font-size: 21px; font-weight: 500; }body.home-page .world-card .tagline { min-height: 32px; margin-bottom: 10px; color: #cfc4ba; font-size: 14px; font-style: italic; }body.home-page .world-card p:last-of-type { flex: 1; max-width: 260px; color: #ded6cf; font-size: 14px; line-height: 1.1; }body.home-page .world-card .button { margin-top: 24px; }body.home-page .author-section { padding: 0 0 76px; }body.home-page .author-card {
         border: 1px solid var(--gold-muted);
         border-radius: 21px;
         padding: 18px clamp(20px, 6vw, 72px);
@@ -379,11 +379,13 @@ body.book-page {
       }body.book-page .book-facts h3:first-child { margin-top: 0; }body.book-page .book-facts h3::before { content: "✥"; padding-right: 7px; }body.book-page .fact-list { display: flex; flex-wrap: wrap; gap: 5px 11px; color: #d4cbc1; font-size: 12px; }body.book-page .retail-links { display: flex; flex-wrap: wrap; gap: 7px; }body.book-page .retail-links span {
         min-width: 78px;
         padding: 4px 8px;
-        border: 1px solid #6c645d;
+        border: 1px solid #494640;
         border-radius: 2px;
         text-align: center;
-        color: var(--cream);
+        color: #817c73;
+        background: rgb(255 255 255 / 4%);
         font-size: 12px;
+        opacity: .65;
       }body.book-page .coming-book {
         min-height: 180px;
         margin-bottom: 26px;
@@ -444,7 +446,7 @@ body.book-page {
         align-items: center;
         background: rgba(3, 10, 16, .55);
         transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
-      }body.book-page .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0006; }body.book-page .world-card img { width: min(150px, 90%); height: 38px; margin-bottom: 6px; object-fit: contain; }body.book-page .world-card:nth-child(2) img { width: 130px; }body.book-page .world-card h3 { margin: 2px 0 5px; color: var(--gold); font-size: 19px; font-weight: 400; text-transform: uppercase; }body.book-page .world-card .tagline { min-height: 30px; margin-bottom: 8px; font-size: 13px; font-style: italic; }body.book-page .world-card p:not(.tagline) { flex: 1; margin-bottom: 12px; color: #d6cdc5; font-size: 13px; line-height: 1.1; }body.book-page .world-card .button { min-height: 35px; padding: 5px 9px; font-size: 10px; }body.book-page .character-section {
+      }body.book-page .world-card:hover { transform: translateY(-6px); border-color: var(--gold); box-shadow: 0 14px 32px #0006; }body.book-page .world-card img { width: min(150px, 90%); height: 38px; margin-bottom: 6px; object-fit: contain; }body.book-page .world-card:nth-child(2) img { width: 130px; }body.book-page .world-card h3 { margin: 2px 0 5px; color: var(--gold); font-size: 19px; font-weight: 400; text-transform: uppercase; }body.book-page .world-card .tagline { min-height: 30px; margin-bottom: 8px; font-size: 13px; font-style: italic; }body.book-page .world-card p:not(.tagline) { flex: 1; margin-bottom: 12px; color: #d6cdc5; font-size: 13px; line-height: 1.1; }body.book-page .world-card .button { min-height: 35px; margin-top: 12px; padding: 5px 9px; font-size: 10px; }body.book-page .character-section {
         margin: 0 0 76px;
         padding: 15px;
         border: 1px solid var(--gold-muted);
@@ -901,7 +903,7 @@ body.characters-page .characters-hero .title-row { justify-content: center; }
 body.characters-page .characters-hero h1 { color: #f0e5d7; text-shadow: 0 3px 24px #000; }
 body.characters-page .characters-hero .intro-subtitle { max-width: 560px; margin: 12px auto 0; color: #f0e5d7; text-shadow: 0 2px 12px #000; }
 body.characters-page .character-directory { display: grid; gap: 28px; padding: 56px 0 76px; }
-body.characters-page .character-card { display: grid; grid-template-columns: minmax(225px, 1.1fr) minmax(230px, 1.2fr) minmax(150px, .7fr); align-items: center; gap: clamp(22px, 4vw, 54px); min-height: 480px; padding: 28px clamp(24px, 4vw, 48px); border: 1px solid #80643e; border-radius: 30px; background: #030a0e; box-shadow: inset 0 0 0 1px rgb(185 143 81 / 10%); }
+body.characters-page .character-card { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; gap: clamp(22px, 4vw, 54px); min-height: 480px; padding: 28px clamp(24px, 4vw, 48px); border: 1px solid #80643e; border-radius: 30px; background: #030a0e; box-shadow: inset 0 0 0 1px rgb(185 143 81 / 10%); }
 body.characters-page .character-card-art { display: block; width: 100%; height: 420px; border-radius: 8px; object-fit: cover; object-position: center 35%; }
 body.characters-page .character-card-art-contain { background: transparent; object-fit: contain; }
 body.characters-page .character-card-copy { padding: 4px 0; }
