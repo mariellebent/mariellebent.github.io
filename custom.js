@@ -140,6 +140,30 @@
 
   if (document.body.classList.contains("realm-page")) {
 
+      const menuButton = document.querySelector(".menu-button");
+      const menuPanel = document.querySelector(".menu-panel");
+      const setMenuOpen = (isOpen) => {
+        menuButton.setAttribute("aria-expanded", String(isOpen));
+        menuPanel.setAttribute("aria-hidden", String(!isOpen));
+        menuPanel.classList.toggle("open", isOpen);
+        document.body.classList.toggle("menu-open", isOpen);
+        if (isOpen) menuPanel.querySelector("a").focus();
+      };
+
+      menuButton.addEventListener("click", () => {
+        setMenuOpen(menuButton.getAttribute("aria-expanded") !== "true");
+      });
+
+      menuPanel.addEventListener("click", (event) => {
+        if (event.target instanceof HTMLAnchorElement) setMenuOpen(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && menuButton.getAttribute("aria-expanded") === "true") {
+          setMenuOpen(false);
+          menuButton.focus();
+        }
+      });
+
       const markers = document.querySelectorAll(".map-marker");
       const locationNote = document.querySelector(".location-note");
 
@@ -148,7 +172,7 @@
           const wasExpanded = marker.getAttribute("aria-expanded") === "true";
           markers.forEach((item) => item.setAttribute("aria-expanded", "false"));
           marker.setAttribute("aria-expanded", String(!wasExpanded));
-          locationNote.textContent = wasExpanded ? "" : "More about this location coming soon.";
+          locationNote.textContent = wasExpanded ? "" : marker.dataset.title;
           locationNote.classList.toggle("visible", !wasExpanded);
         });
       });

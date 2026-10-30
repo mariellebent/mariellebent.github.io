@@ -730,7 +730,48 @@ body.realm-page {
         text-decoration: none;
         font-size: 18px;
         font-style: italic;
-      }body.realm-page .brand img { width: 34px; height: 30px; object-fit: contain; }body.realm-page .home-link { color: #c3b9b0; font-size: 15px; text-decoration: none; }body.realm-page .home-link:hover { color: var(--gold); }body.realm-page main { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }body.realm-page .realm-intro { padding: 70px 0 52px; text-align: center; }body.realm-page .title-row {
+      }body.realm-page .brand img { width: 34px; height: 30px; object-fit: contain; }body.realm-page .menu-button {
+        position: relative;
+        z-index: 13;
+        width: 52px;
+        height: 46px;
+        padding: 10px;
+        border: 0;
+        background: transparent;
+        color: var(--cream);
+        cursor: pointer;
+      }body.realm-page .menu-icon { display: grid; gap: 6px; }body.realm-page .menu-icon span {
+        width: 30px;
+        height: 2px;
+        display: block;
+        background: var(--cream);
+        transition: transform .3s ease, width .3s ease;
+      }body.realm-page .menu-icon span:nth-child(2) { width: 22px; justify-self: end; }body.realm-page .menu-button[aria-expanded="true"] .menu-icon span:first-child { transform: translateY(8px) rotate(45deg); }body.realm-page .menu-button[aria-expanded="true"] .menu-icon span:nth-child(2) { width: 30px; opacity: 0; }body.realm-page .menu-button[aria-expanded="true"] .menu-icon span:last-child { transform: translateY(-8px) rotate(-45deg); }body.realm-page .menu-panel {
+        position: fixed;
+        z-index: 12;
+        top: 0;
+        right: 0;
+        width: min(390px, 88vw);
+        height: 100vh;
+        height: 100dvh;
+        padding: 100px 38px 38px;
+        border-left: 1px solid var(--gold-muted);
+        background: #211f1e;
+        box-shadow: -20px 0 60px #0008;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        visibility: hidden;
+        transform: translateX(105%);
+        transition: transform .35s ease, visibility .35s;
+      }body.realm-page .menu-panel.open { visibility: visible; transform: translateX(0); }body.realm-page .menu-panel a {
+        padding: 13px 0;
+        border-bottom: 1px solid rgb(142 113 75 / 35%);
+        color: var(--cream);
+        font-size: 21px;
+        letter-spacing: .04em;
+        text-decoration: none;
+      }body.realm-page .menu-panel a:hover { color: var(--gold); }body.realm-page.menu-open { overflow: hidden; }body.realm-page main { width: min(1040px, calc(100% - 48px)); margin: 0 auto; }body.realm-page .realm-intro { padding: 70px 0 52px; text-align: center; }body.realm-page .title-row {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -775,12 +816,12 @@ body.realm-page {
         border-radius: 50%;
         display: grid;
         place-items: center;
-        background: #211034;
+        background: rgb(33 16 52 / 72%);
         color: #f0e9fa;
         box-shadow: 0 2px 6px #0008;
         cursor: pointer;
         transition: transform .18s ease, background-color .18s ease;
-      }body.realm-page .map-marker:hover, body.realm-page .map-marker[aria-expanded="true"] { transform: translate(-50%, -50%) scale(1.12); background: #382051; }body.realm-page .map-marker svg { width: 58%; height: 58%; }body.realm-page .location-note {
+      }body.realm-page .map-marker:hover, body.realm-page .map-marker[aria-expanded="true"] { transform: translate(-50%, -50%) scale(1.12); background: rgb(56 32 81 / 82%); }body.realm-page .map-marker svg { width: 58%; height: 58%; }body.realm-page .location-note {
         position: absolute;
         left: 50%;
         bottom: 14px;
@@ -939,4 +980,124 @@ body.characters-page .character-card-coming-art span { position: absolute; right
 @media (prefers-reduced-motion: reduce) {
   body.characters-page .characters-hero-image { animation: none; }
 }
+
+body.home-page .menu-panel a[aria-current="page"],
+body.book-page .menu-panel a[aria-current="page"],
+body.characters-page .menu-panel a[aria-current="page"],
+body.realm-page .menu-panel a[aria-current="page"],
+body.contact-page .menu-panel a[aria-current="page"] {
+  color: var(--gold);
+}
+
+body.home-page .author-card { padding: 28px clamp(24px, 6vw, 72px); gap: clamp(36px, 8vw, 96px); }
+body.home-page .author-copy { display: flex; flex-direction: column; gap: 22px; }
+body.home-page .author-copy .eyebrow,
+body.home-page .author-copy h2,
+body.home-page .author-copy p:not(.eyebrow) { margin: 0; }
+body.home-page .author-copy .button {
+  color: var(--cream);
+  background: rgba(10, 10, 12, .55);
+  border-color: #726a6a;
+}
+
+/* Keep the Godwoven World section in sync across the home and book pages. */
+body.book-page .world-section {
+  position: relative;
+  left: 50%;
+  width: min(1040px, calc(100vw - 48px));
+  margin: 0 0 0 0;
+  padding: 12px 0 76px;
+  transform: translateX(-50%);
+  text-align: center;
+}
+body.book-page .world-section .section-divider {
+  width: min(350px, 70vw);
+  height: 50px;
+  margin: 0 auto 10px;
+}
+body.book-page .world-section .section-title {
+  margin-bottom: 8px;
+  color: var(--gold);
+  font-size: clamp(32px, 4.5vw, 46px);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+}
+body.book-page .world-section > .section-subtitle {
+  margin-bottom: 40px;
+  color: #d4c9c1;
+  font-size: 19px;
+  font-style: italic;
+}
+body.book-page .world-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+body.book-page .world-card {
+  min-height: 290px;
+  padding: 20px 18px 18px;
+  border: 1px solid var(--gold-muted);
+  border-radius: 21px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #1d1b1a;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+body.book-page .world-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 14px 32px #0005;
+}
+body.book-page .world-card img {
+  width: min(190px, 90%);
+  height: 55px;
+  margin-bottom: 8px;
+  object-fit: contain;
+}
+body.book-page .world-card:nth-child(2) img { width: 150px; }
+body.book-page .world-card h3 {
+  margin: 4px 0 7px;
+  color: var(--gold);
+  font-size: 21px;
+  font-weight: 500;
+}
+body.book-page .world-card .tagline {
+  min-height: 32px;
+  margin-bottom: 10px;
+  color: #cfc4ba;
+  font-size: 14px;
+  font-style: italic;
+}
+body.book-page .world-card p:not(.tagline) {
+  flex: 0 0 auto;
+  margin: 0 0 1em;
+  color: #ded6cf;
+  font-size: 14px;
+  line-height: 1.1;
+}
+body.book-page .world-card p:last-of-type {
+  flex: 1;
+  max-width: 260px;
+}
+body.book-page .world-card .button {
+  min-height: 46px;
+  margin-top: 24px;
+  padding: 9px 18px;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  body.book-page .world-section { padding-bottom: 70px; }
+  body.book-page .world-section > .section-subtitle { margin-bottom: 34px; }
+  body.book-page .world-cards {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+    gap: 16px;
+  }
+  body.book-page .world-card { min-height: 270px; }
+}
+
     
