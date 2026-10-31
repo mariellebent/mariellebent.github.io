@@ -935,7 +935,8 @@ body.realm-page {
       }
 body.characters-page .page-header { position: absolute; top: 0; right: 0; left: 0; margin-right: auto; margin-left: auto; }
 body.characters-page { overflow-x: clip; }
-body.characters-page .characters-hero { position: relative; left: 50%; width: 100vw; height: 100vh; height: 100svh; margin: 0 0 48px -50vw; overflow: hidden; }
+body.characters-page .characters-hero { position: relative; left: 50%; width: 100vw; height: 100vh; height: 100svh; margin: 0 0 48px -50vw; overflow: hidden; background: #030a10; }
+body.characters-page .characters-hero picture { display: block; }
 body.characters-page .characters-hero-image { position: absolute; z-index: 0; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; animation: characters-hero-zoom 1.8s cubic-bezier(.2,.7,.25,1) both; }
 body.characters-page .characters-hero::after { position: absolute; z-index: 1; inset: 0; background: linear-gradient(180deg, rgb(3 10 16 / 58%), rgb(3 10 16 / 36%) 48%, rgb(3 10 16 / 52%)); content: ""; pointer-events: none; }
 @keyframes characters-hero-zoom { from { transform: scale(1.14); } to { transform: scale(1); } }
@@ -959,6 +960,8 @@ body.characters-page .character-card-coming-art { position: relative; display: g
 body.characters-page .character-card-coming-art img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: contain; }
 body.characters-page .character-card-coming-art span { position: absolute; right: 8px; bottom: 10px; left: 8px; color: #e0c18b; font-size: 13px; letter-spacing: .12em; text-align: center; text-shadow: 0 1px 5px #000; text-transform: uppercase; }
 @media (max-width: 760px) {
+  body.characters-page .characters-hero { background: none; }
+  body.characters-page .characters-hero picture { display: block; }
   body.characters-page .characters-hero { margin-bottom: 32px; }
   body.characters-page .characters-hero-copy { padding: 12px; }
   body.characters-page .characters-hero .title-row { gap: 8px; }
@@ -1114,6 +1117,35 @@ body.book-page .world-card .button {
   body.book-page .cover-status {
     max-width: calc(100% - 8px);
     white-space: normal;
+  }
+}
+
+body.book-page .character-image {
+  width: auto;
+  max-width: 100%;
+  max-height: 260px;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+body.book-page .character-section {
+  background: rgba(7, 12, 18, .88);
+}
+
+body.book-page .character-section .character-image {
+  width: 100%;
+  max-height: none;
+  aspect-ratio: 1.2;
+  object-fit: cover;
+  border-radius: 16px;
+  -webkit-mask-image: linear-gradient(to right, #000 68%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 68%, transparent 100%);
+}
+
+@media (max-width: 760px) {
+  body.book-page .character-section .character-image {
+    -webkit-mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 68%, transparent 100%);
   }
 }
 
